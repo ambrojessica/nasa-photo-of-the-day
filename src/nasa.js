@@ -1,29 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import './nasa.css';
-import axios from 'axios';
+import React from 'react';
+import styled from 'styled-components';
 
-export default function App () {
-  const [nasaData, setNasaData] = useState('');
+const StyledNasa = styled.div`
+  background-color
+  h2 {
+    font-size: 30px;
+    color: #6d597a;
+    background-color: #f7e1d7;
+  }
 
+  h3 {
+    font-size: 25px;
+    color: #4d908e;
+  }
 
-  useEffect(() => {
-    axios.get(`https://api.nasa.gov/planetary/apod?api_key=VOqtIGmTdFGtlmFKl66visR18itZOWJygOTgtFKI`)
-    .then(res => {
-      setNasaData(res.data);
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }, [])
+  p{
+    color: #9a031e;
+  }
 
+  h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #fb8500;
+  }
+  img {
+    width: 90%;
+    height: 70vh;
+  }
+`
+
+const Nasa = (props) => {
   return (
-    <div className='information'>
-      <h2>The date is {nasaData.date}</h2>
-      <img src={nasaData.hdurl} alt='space brought to you by Nasa' />
-      <h2>{nasaData.title}</h2>
-      <p>Explanation: {nasaData.explanation}</p>
-      <p>Copyright {nasaData.copyright}</p>
-    </div>
+    <StyledNasa className='website'>
+      <h2>Today's Date: {props.info.date}</h2>
+      <img src={props.info.url} />
+      <h3>Title: {props.info.title}</h3>
+      <p>{props.info.explanation}</p>
+      <h4>Copyright: {props.info.copyright}</h4>
+    </StyledNasa>
   )
 }
+
+export default Nasa;

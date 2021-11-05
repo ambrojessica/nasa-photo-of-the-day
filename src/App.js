@@ -26,7 +26,8 @@ function App() {
       background-position: center ;
 	background-attachment: fixed;
   background-repeat: no-repeat;
-      padding: 3%;
+      padding: 5%;
+      font-size: 40px;
       color: #fefee3;
       }
       `
